@@ -13,8 +13,8 @@ public class Restaurante {
     private String nombre;
     private Integer puntuacion;
     private String ubicacion;
-    private String tipoComida;
-    private Boolean menuDelDia;
-    private Boolean menuInfantil;
-    private Double precioMedio;
+    private String tipocomida;
+    private Boolean menu;
+    private Boolean menuinfantil;
+    private Double precio;
 }

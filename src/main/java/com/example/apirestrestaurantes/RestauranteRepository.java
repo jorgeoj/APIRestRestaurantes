@@ -11,10 +11,10 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
     public Restaurante getRestauranteByNombre(String nombre);
     public List<Restaurante> getRestaurantesByPuntuacion(Integer puntuacion);
     public Restaurante getRestauranteByUbicacion(String ubicacion);
-    public List<Restaurante> getRestauranteByTipoComida(String tipoComida);
-    public List<Restaurante> getRestaurantesByMenuDelDia(Boolean menuDelDia);
-    public List<Restaurante> getRestaurantesByMenuInfantil(Boolean menuInfantil);
-    public List<Restaurante> getRestaurantesByPrecioMedio(Double precioMedio);
+    public List<Restaurante> getRestauranteByTipocomida(String tipocomida);
+    public List<Restaurante> getRestaurantesByMenu(Boolean menu);
+    public List<Restaurante> getRestaurantesByMenuinfantil(Boolean menuinfantil);
+    public List<Restaurante> getRestaurantesByPrecio(Double precio);
 
     // Consultas mas complejas
 
@@ -26,5 +26,16 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
     @Query("SELECT count(r) FROM Restaurante r")
     public Integer cantidadDeRestaurantes();
 
+    // Obtener los restaurantes con la puntuacion indicada o mayor
+    @Query("SELECT r FROM Restaurante r WHERE r.puntuacion >= :puntuacion")
+    List<Restaurante> getRestaurantesConPuntuacionMayorOIgual(Integer puntuacion);
+
+    // Obtener lista de restaurantes con precio máximo indicado
+    @Query("SELECT r FROM Restaurante  r WHERE r.precio <= :precioMedio")
+    List<Restaurante> restaurantesPorPrecioMaximo(Double precioMedio);
+
+    // Obtener lista de restaurantes con precio mínimo indicado
+    @Query("SELECT r FROM Restaurante  r WHERE r.precio >= :precioMedio")
+    List<Restaurante> restaurantesPorPrecioMinimo(Double precioMedio);
 
 }
